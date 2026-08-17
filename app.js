@@ -31,4 +31,29 @@
   document.querySelectorAll('[data-video]').forEach(b=>b.addEventListener('click',()=>{push({event:'video_start',video_title:b.dataset.video,video_provider:'training_mock'}); let s=document.getElementById('video-status'); if(s)s.textContent='Mock video started. Check Preview for video_start.';}));
   function msg(form,text,cls){let box=form.querySelector('.form-message'); if(!box){box=document.createElement('div'); form.appendChild(box);} box.className='form-message notice '+cls; box.textContent=text;}
   if(cfg.debugPanel){const p=document.createElement('details'); p.className='qa-panel'; p.innerHTML='<summary>QA Data Layer Console</summary><pre id="qa-log">Recent dataLayer pushes print here. Use GTM Preview as final QA.\n</pre>'; document.body.appendChild(p); const log=p.querySelector('#qa-log'); window.addEventListener('training:dataLayerPush',e=>{log.textContent+='\n'+JSON.stringify(e.detail,null,2)+'\n'; log.scrollTop=log.scrollHeight;});}
+
+  // ===== Add to Kit Button Feedback =====
+const addToKitBtn = document.getElementById('add-to-kit-btn');
+if (addToKitBtn) {
+addToKitBtn.addEventListener('click', function () {
+this.innerHTML = '✓ Added to Kit';
+this.style.background = '#16a34a';
+this.style.color = '#fff';
+this.disabled = true;
+});
+}
+// ===== Expand ISI Button Feedback =====
+const isiBtn = document.getElementById('expand-isi-btn');
+const isiContent = document.getElementById('isi-content');
+if (isiBtn && isiContent) {
+isiBtn.addEventListener('click', function () {
+if (isiContent.style.display === 'none') {
+isiContent.style.display = 'block';
+this.innerHTML = 'Hide ISI';
+} else {
+isiContent.style.display = 'none';
+this.innerHTML = 'Expand ISI';
+}
+});
+}
 })();
