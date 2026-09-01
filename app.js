@@ -56,4 +56,61 @@ this.innerHTML = 'Expand ISI';
 }
 });
 }
+// ===== Savings Page Button Feedback =====
+
+const startBtn = document.getElementById('start-app-btn');
+const eligibilityBtn = document.getElementById('eligibility-btn');
+const downloadBtn = document.getElementById('download-card-btn');
+const savingsStatus = document.getElementById('savings-status');
+
+if (startBtn) {
+
+    startBtn.addEventListener('click', function () {
+
+        this.innerHTML = '✓ Step 1 Complete';
+        this.style.background = '#16a34a';
+        this.style.color = '#fff';
+
+        if (savingsStatus) {
+            savingsStatus.style.display = 'block';
+            savingsStatus.innerHTML = 'Application started successfully.';
+        }
+
+    });
+
+}
+
+if (eligibilityBtn) {
+
+    eligibilityBtn.addEventListener('click', function () {
+
+        this.innerHTML = '✓ Eligible';
+        this.style.background = '#16a34a';
+        this.style.color = '#fff';
+
+        if (savingsStatus) {
+            savingsStatus.style.display = 'block';
+            savingsStatus.innerHTML = 'Eligibility verification complete.';
+        }
+
+    });
+
+}
+
+if (downloadBtn) {
+
+    downloadBtn.addEventListener('click', function () {
+
+        this.innerHTML = '✓ Savings Card Downloaded';
+        this.style.background = '#16a34a';
+        this.style.color = '#fff';
+
+        if (savingsStatus) {
+            savingsStatus.style.display = 'block';
+            savingsStatus.innerHTML = 'Savings card download registered.';
+        }
+
+    });
+
+}
 })();
