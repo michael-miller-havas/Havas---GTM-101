@@ -63,55 +63,63 @@ const eligibilityBtn = document.getElementById('eligibility-btn');
 const downloadBtn = document.getElementById('download-card-btn');
 const savingsStatus = document.getElementById('savings-status');
 
+function updateSavingsButton(button, message) {
+
+    if (!button) return;
+
+    button.textContent = message;
+
+    button.style.setProperty('background', '#16a34a', 'important');
+    button.style.setProperty('color', '#ffffff', 'important');
+    button.style.setProperty('border-color', '#16a34a', 'important');
+
+    button.disabled = true;
+}
+
 if (startBtn) {
 
-    startBtn.addEventListener('click', function () {
+    startBtn.onclick = function () {
 
-        this.innerHTML = '✓ Step 1 Complete';
-        this.style.background = '#16a34a';
-        this.style.color = '#fff';
+        updateSavingsButton(this, '✓ Step 1 Complete');
 
         if (savingsStatus) {
             savingsStatus.style.display = 'block';
-            savingsStatus.innerHTML = 'Application started successfully.';
+            savingsStatus.className = 'notice ok';
+            savingsStatus.innerHTML =
+                '<strong>Success:</strong> Application started successfully.';
         }
-
-    });
-
+    };
 }
 
 if (eligibilityBtn) {
 
-    eligibilityBtn.addEventListener('click', function () {
+    eligibilityBtn.onclick = function () {
 
-        this.innerHTML = '✓ Eligible';
-        this.style.background = '#16a34a';
-        this.style.color = '#fff';
+        updateSavingsButton(this, '✓ Eligible');
 
         if (savingsStatus) {
             savingsStatus.style.display = 'block';
-            savingsStatus.innerHTML = 'Eligibility verification complete.';
+            savingsStatus.className = 'notice ok';
+            savingsStatus.innerHTML =
+                '<strong>Success:</strong> Eligibility verification complete.';
         }
-
-    });
-
+    };
 }
 
 if (downloadBtn) {
 
-    downloadBtn.addEventListener('click', function () {
+    downloadBtn.onclick = function () {
 
-        this.innerHTML = '✓ Savings Card Downloaded';
-        this.style.background = '#16a34a';
-        this.style.color = '#fff';
+        updateSavingsButton(this, '✓ Savings Card Downloaded');
 
         if (savingsStatus) {
             savingsStatus.style.display = 'block';
-            savingsStatus.innerHTML = 'Savings card download registered.';
+            savingsStatus.className = 'notice ok';
+            savingsStatus.innerHTML =
+                '<strong>Success:</strong> Savings card download registered.';
         }
-
-    });
-
+    };
 }
-console.log('SAVINGS CODE LOADED');
+
+console.log('SAVINGS BUTTONS INITIALIZED');
 })();
