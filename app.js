@@ -113,4 +113,5 @@ if (downloadBtn) {
     });
 
 }
+console.log('SAVINGS CODE LOADED');
 })();
