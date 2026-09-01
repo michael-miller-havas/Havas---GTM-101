@@ -46,7 +46,17 @@ savings_card_download_click, generate_lead, thank_you_view.
 
 <button id="eligibility-btn" class="btn ghost" onclick="this.innerHTML='✓ Eligible';this.style.background='#16a34a';this.style.color='#fff';document.getElementById('savings-status').style.display='block';document.getElementById('savings-status').innerHTML='<strong>Eligibility Verified</strong><br>Eligibility check completed successfully.';" data-track="funnel_cta" data-event="eligibility_check_click" data-section="savings_intro" data-funnel-step="2_eligibility">Check Eligibility</button>
 
-<button id="download-card-btn" class="btn secondary" onclick="this.innerHTML='✓ Savings Card Downloaded';this.style.background='#16a34a';this.style.color='#fff';document.getElementById('savings-status').style.display='block';document.getElementById('savings-status').innerHTML='<strong>Savings Card Ready</strong><br>Download event registered successfully.';" data-track="funnel_cta" data-event="savings_card_download_click" data-section="savings_intro" data-funnel-step="3_download_card">Download Savings Card</button>
+<a
+id="download-card-btn"
+class="btn secondary"
+href="savings-card.pdf"
+download
+data-track="funnel_cta"
+data-event="savings_card_download_click"
+data-section="savings_intro"
+data-funnel-step="3_download_card">
+Download Savings Card
+</a>
 
 <div
 id="savings-status"
