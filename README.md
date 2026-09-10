@@ -20,7 +20,7 @@ Repo-ready static website for GitHub Pages. This is a fictional pharma-style tag
 2. Enable GitHub Pages from the `main` branch and `/root`.
 3. Replace `GTM-XXXXXXX` in `assets/js/config.js` with your GTM training container ID.
 4. Create your GA4 property and Web stream using the GitHub Pages URL.
-5. Build the GTM variables, triggers, and tags listed in `docs/GTM_GA4_CONTAINER_BUILD_GUIDE.md`.
+5. Build the GTM variables, triggers, and tags listed in `GTM_GA4_CONTAINER_BUILD_GUIDE.md`.
 
 ## Reset model
 
