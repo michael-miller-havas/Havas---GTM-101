@@ -1,1 +1,245 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Training Tasks | Acme Biologics GTM Training Lab</title><link rel="stylesheet" href="styles.css"><script src="config.js"></script></head><body data-page="training_tasks"><div class="top">Training-only fictional website. Do not collect real user, patient, or client data.</div><header class="header"><nav class="nav"><a class="brand" href="index.html">Acme <span>Biologics</span></a><div class="links"><a class="" href="index.html">Home</a><a class="" href="products.html">Products</a><a class="" href="hcp-resources.html">HCP Resources</a><a class="" href="savings.html">Savings</a><a class="" href="locator.html">Locator</a><a class="" href="contact.html">Contact</a><a class="active" href="training-tasks.html">Training Tasks</a><a class="" href="qa-scenarios.html">QA Scenarios</a></div></nav></header><main><section class="section"><h1>Training Tasks</h1><p class="lead">Exercise checklist for trainees creating and QAing tags.</p><div class="notice"><strong>Rule:</strong> create one GTM workspace per trainee. Do not publish trainee work unless the trainer explicitly approves.</div></section><section class="section"><table class="table"><thead><tr><th>Level</th><th>Task</th><th>Expected signal</th></tr></thead><tbody><tr><td>Beginner</td><td>Track Home Request Demo CTA.</td><td>request_demo_click with cta_text, page_section</td></tr><tr><td>Beginner</td><td>Track PDF downloads.</td><td>file_download with resource_name, resource_type</td></tr><tr><td>Intermediate</td><td>Track contact form errors and success.</td><td>form_start, form_error, generate_lead, thank_you_view</td></tr><tr><td>Intermediate</td><td>Track provider locator.</td><td>search, search_error, provider_result_click</td></tr><tr><td>Advanced</td><td>QA broken scenario page.</td><td>Identify typo event, missing parameter, duplicate push, wrong casing</td></tr></tbody></table></section></main><footer class="footer"><div class="inner"><div><strong>Acme Biologics GTM Training Lab</strong><br>Reusable GitHub Pages sandbox for GTM and GA4 onboarding.</div><div><a href="GTM_GA4_CONTAINER_BUILD_GUIDE.md">Container setup guide</a></div></div></footer><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Training Tasks | Acme Biologics GTM Training Lab</title>
+<link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
+</head>
+
+<body data-page="training-tasks">
+
+<div class="top">Training-only fictional website. Do not collect real user, patient, or client data.</div>
+
+<header class="header">
+<nav class="nav">
+<a class="brand" href="index.html">Acme <span>Biologics</span></a>
+
+<div class="links">
+<a href="index.html">Home</a>
+<a href="products.html">Products</a>
+<a href="hcp-resources.html">HCP Resources</a>
+<a href="savings.html">Savings</a>
+<a href="locator.html">Locator</a>
+<a href="contact.html">Contact</a>
+<a class="active" href="training-tasks.html">Training Tasks</a>
+<a href="qa-scenarios.html">QA Scenarios</a>
+</div>
+</nav>
+</header>
+
+<main>
+
+<section class="section">
+
+<h1>GTM Training Tasks</h1>
+
+<p class="lead">Complete the exercises below in your assigned GTM workspace. For each task, define the measurement requirement, configure the tag and trigger, test in GTM Preview, validate the expected event and parameters, and document your QA evidence.</p>
+
+<div class="notice">
+<strong>Training Rule:</strong> Do not publish changes unless instructed by your trainer. Build and QA all assigned work inside your trainee workspace.
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>Level 1 — Beginner</h2>
+
+<p class="lead">Focus on basic page views, CTA tracking, downloads, and simple user interactions.</p>
+
+<table class="table">
+<thead>
+<tr>
+<th>Task</th>
+<th>Page</th>
+<th>Expected GA4 Event</th>
+<th>QA Requirement</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Track Request Demo CTA</td>
+<td>Home</td>
+<td><code>request_demo_click</code></td>
+<td>Confirm the tag fires only when Request Demo is selected.</td>
+</tr>
+
+<tr>
+<td>Track Learn More CTA</td>
+<td>Home</td>
+<td><code>learn_more_click</code></td>
+<td>Confirm the tag fires before navigation to Products.</td>
+</tr>
+
+<tr>
+<td>Track Products Page View</td>
+<td>Products</td>
+<td><code>products_page_view</code></td>
+<td>Confirm the tag fires once when the Products page loads.</td>
+</tr>
+
+<tr>
+<td>Track HCP Resources Page View</td>
+<td>HCP Resources</td>
+<td><code>hcp_resources_pageview</code></td>
+<td>Confirm the tag fires once when the page loads.</td>
+</tr>
+
+<tr>
+<td>Track Savings Page View</td>
+<td>Savings</td>
+<td><code>savings_pageview</code></td>
+<td>Confirm the tag fires once when the Savings page loads.</td>
+</tr>
+
+<tr>
+<td>Track Thank You Page View</td>
+<td>Thank You</td>
+<td><code>thankyou_pageview</code></td>
+<td>Confirm the tag fires only on the Thank You page.</td>
+</tr>
+
+<tr>
+<td>Track PDF / Resource Downloads</td>
+<td>Products + HCP Resources</td>
+<td><code>file_download</code></td>
+<td>Validate the correct resource name/type and confirm only one GA4 download event is sent.</td>
+</tr>
+
+<tr>
+<td>Track Add to Kit</td>
+<td>Products</td>
+<td><code>add_to_kit</code></td>
+<td>Confirm the event fires when Add to Kit is selected.</td>
+</tr>
+
+<tr>
+<td>Track Talk to a Rep</td>
+<td>Products</td>
+<td><code>talk_to_rep_click</code></td>
+<td>Confirm the event fires before navigation to Contact.</td>
+</tr>
+
+<tr>
+<td>Track Expand ISI</td>
+<td>Products</td>
+<td><code>isi_expand_click</code></td>
+<td>Confirm the event fires when the ISI section is expanded.</td>
+</tr>
+
+</tbody>
+</table>
+
+</section>
+
+<section class="section">
+
+<h2>Level 2 — Intermediate</h2>
+
+<p class="lead">Focus on forms, outbound activity, video interactions, search behavior, and event parameters.</p>
+
+<table class="table">
+<thead>
+<tr>
+<th>Task</th>
+<th>Page</th>
+<th>Expected GA4 Event</th>
+<th>QA Requirement</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Track Newsletter Submit</td>
+<td>Home</td>
+<td><code>newsletter_submit_click</code></td>
+<td>Confirm the submit CTA fires when the newsletter form is submitted.</td>
+</tr>
+
+<tr>
+<td>Track Generate Lead</td>
+<td>Forms</td>
+<td><code>generate_lead</code></td>
+<td>Validate form name, form ID, lead type, and successful submission behavior.</td>
+</tr>
+
+<tr>
+<td>Track HCP Access Submit</td>
+<td>HCP Resources</td>
+<td><code>hcp_access_submit_click</code></td>
+<td>Confirm the HCP Request Access action is captured.</td>
+</tr>
+
+<tr>
+<td>Track Video Start</td>
+<td>Products</td>
+<td><code>video_start</code></td>
+<td>Validate video title and video provider values.</td>
+</tr>
+
+<tr>
+<td>Track Outbound Link</td>
+<td>HCP Resources</td>
+<td><code>outbound_click</code></td>
+<td>Validate the destination URL and confirm outbound tracking fires once.</td>
+</tr>
+
+<tr>
+<td>Track MOA Video Portal</td>
+<td>HCP Resources</td>
+<td><code>outbound_click</code></td>
+<td>Confirm Open Video Portal is identified as an outbound interaction.</td>
+</tr>
+
+<tr>
+<td>Track Prescriber Search</td>
+<td>Locator</td>
+<td><code>search</code></td>
+<td>Validate search term and results count.</td>
+</tr>
+
+<tr>
+<td>Track Find Provider CTA</td>
+<td>Locator</td>
+<td><code>provider_search_submit_click</code></td>
+<td>Confirm the Find Provider submission action is captured.</td>
+</tr>
+
+</tbody>
+</table>
+
+</section>
+
+<section class="section">
+
+<h2>Level 3 — Advanced</h2>
+
+<p class="lead">Focus on multi-step funnel tracking, event sequencing, conversion QA, and troubleshooting.</p>
+
+<table class="table">
+<thead>
+<tr>
+<th>Task</th>
+<th>Page</th>
+<th>Expected GA4 Event</th>
+<th>QA Requirement</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Track Start Application</td>
+<td>Savings</td>
+<td><code>savings_start_application</code></td>
+<td>Confirm the Start Application interaction fires the intended GA4 event.</td>
+</tr>
+
+<tr>
+<td>Track Eligibility Check</td>
+<td>Savings</td
