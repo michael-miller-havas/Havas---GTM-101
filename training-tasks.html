@@ -219,7 +219,7 @@
 
 <h2>Level 3 — Advanced</h2>
 
-<p class="lead">Focus on multi-step funnel tracking, event sequencing, conversion QA, and troubleshooting.</p>
+<p class="lead">Focus on multi-step funnel tracking, event sequencing, conversion QA, troubleshooting, and implementation documentation.</p>
 
 <table class="table">
 <thead>
@@ -236,10 +236,184 @@
 <tr>
 <td>Track Start Application</td>
 <td>Savings</td>
-<td><code>savings_start_application</code></td>
-<td>Confirm the Start Application interaction fires the intended GA4 event.</td>
+<td><code>start_application</code></td>
+<td>Confirm the event fires when Start Application is selected. Validate <code>funnel_step = 1_start</code> and confirm the event fires only once.</td>
 </tr>
 
 <tr>
 <td>Track Eligibility Check</td>
-<td>Savings</td
+<td>Savings</td>
+<td><code>eligibility_check_click</code></td>
+<td>Confirm the event fires when Check Eligibility is selected. Validate <code>funnel_step = 2_eligibility</code> and confirm the event fires only once.</td>
+</tr>
+
+<tr>
+<td>Track Savings Card Download</td>
+<td>Savings</td>
+<td><code>savings_card_download_click</code></td>
+<td>Confirm the event fires when Download Savings Card is selected. Verify the PDF downloads successfully and validate <code>funnel_step = 3_download_card</code>.</td>
+</tr>
+
+<tr>
+<td>Track Savings Application Submit</td>
+<td>Savings</td>
+<td><code>savings_submit_click</code></td>
+<td>Confirm the submit CTA event fires when Submit Application is selected. Validate <code>page_section = savings_application</code> and <code>funnel_step = submit</code>.</td>
+</tr>
+
+<tr>
+<td>Track Successful Savings Lead</td>
+<td>Savings</td>
+<td><code>generate_lead</code></td>
+<td>Complete all required fields and submit the application. Validate <code>form_name = savings_application</code>, the form ID, and <code>lead_type = savings_application</code>.</td>
+</tr>
+
+<tr>
+<td>Track Savings Thank You View</td>
+<td>Thank You</td>
+<td><code>thank_you_view</code></td>
+<td>Confirm the event fires after a successful Savings form submission and only after the user reaches the Thank You page.</td>
+</tr>
+
+<tr>
+<td>Validate Savings Funnel Sequence</td>
+<td>Savings + Thank You</td>
+<td><code>start_application</code> → <code>eligibility_check_click</code> → <code>savings_card_download_click</code> → <code>generate_lead</code> → <code>thank_you_view</code></td>
+<td>Use GTM Preview to confirm the events occur in the expected order and that no event fires twice from a single interaction.</td>
+</tr>
+
+<tr>
+<td>QA Misspelled Event Name</td>
+<td>QA Scenarios</td>
+<td><code>request_demo_clik</code></td>
+<td>Identify that the event name is misspelled. Document why a trigger expecting <code>request_demo_click</code> would not fire and recommend correcting the source event.</td>
+</tr>
+
+<tr>
+<td>QA Missing Download Parameter</td>
+<td>QA Scenarios</td>
+<td><code>file_download</code></td>
+<td>Confirm the event fires but <code>resource_name</code> is missing. Explain why a firing tag can still fail data-quality QA.</td>
+</tr>
+
+<tr>
+<td>QA Duplicate Event</td>
+<td>QA Scenarios</td>
+<td><code>duplicate_cta_click</code></td>
+<td>Identify that one user action produces two events. Document the double-counting risk and recommend removing the duplicate dataLayer push.</td>
+</tr>
+
+<tr>
+<td>QA Incorrect Event Naming Convention</td>
+<td>QA Scenarios</td>
+<td><code>generateLead</code></td>
+<td>Identify that the camel-case event does not match the expected <code>generate_lead</code> naming convention. Explain the reporting and key-event impact.</td>
+</tr>
+
+<tr>
+<td>Compare Click Trigger vs. Custom Event Trigger</td>
+<td>Home, Products, or Savings</td>
+<td>Assigned event</td>
+<td>Build one implementation using Click – All Elements and one using a Custom Event trigger. Compare trigger stability, available metadata, and dependency on visible button text.</td>
+</tr>
+
+<tr>
+<td>Validate Negative Firing Conditions</td>
+<td>Multiple Pages</td>
+<td>Assigned event</td>
+<td>Confirm the assigned tag does not fire on unrelated buttons, page loads, scroll events, navigation links, or other pages.</td>
+</tr>
+
+<tr>
+<td>Investigate Duplicate File Downloads</td>
+<td>Products + HCP Resources</td>
+<td><code>file_download</code></td>
+<td>Determine whether the download is being sent by both GA4 Enhanced Measurement and a GTM GA4 Event tag. Confirm the final configuration produces one GA4 event per download.</td>
+</tr>
+
+<tr>
+<td>Create a Mock Vendor Pixel</td>
+<td>Assigned Page</td>
+<td>Trainer-defined event</td>
+<td>Create a Custom HTML tag that writes a mock vendor-pixel message to the browser console. Do not use a real vendor ID or send data to an external platform.</td>
+</tr>
+
+<tr>
+<td>Complete Final QA Documentation</td>
+<td>All Assigned Pages</td>
+<td>Multiple</td>
+<td>Document the business requirement, tag, trigger, variables, expected event, actual result, negative test, GTM Preview evidence, GA4 validation, version note, and rollback recommendation.</td>
+</tr>
+
+</tbody>
+</table>
+
+</section>
+
+<section class="section">
+
+<h2>Completion Checklist</h2>
+
+<div class="grid grid3">
+
+<div class="card">
+<span class="tag">Define</span>
+<h3>Measurement Plan</h3>
+<p>Document the business purpose, user action, event name, parameters, page scope, and expected GA4 destination.</p>
+</div>
+
+<div class="card">
+<span class="tag">Configure</span>
+<h3>GTM Implementation</h3>
+<p>Create clearly named tags, triggers, and variables inside the assigned trainee workspace.</p>
+</div>
+
+<div class="card">
+<span class="tag">Test</span>
+<h3>Preview and QA</h3>
+<p>Confirm positive and negative firing conditions, parameter values, event order, and duplicate-event prevention.</p>
+</div>
+
+<div class="card">
+<span class="tag">Validate</span>
+<h3>GA4 Verification</h3>
+<p>Confirm the expected event reaches the training GA4 property with the intended event name and parameters.</p>
+</div>
+
+<div class="card">
+<span class="tag">Document</span>
+<h3>QA Evidence</h3>
+<p>Capture GTM Preview evidence, expected-versus-actual results, known limitations, and any required follow-up.</p>
+</div>
+
+<div class="card">
+<span class="tag">Review</span>
+<h3>Trainer Signoff</h3>
+<p>Submit the completed workspace and documentation for review. Do not publish without trainer approval.</p>
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer class="footer">
+<div class="inner">
+
+<div>
+<strong>Acme Biologics GTM Training Lab</strong><br>
+Reusable GitHub Pages sandbox for GTM and GA4 onboarding.
+</div>
+
+<div>
+<a href="GTM_GA4_CONTAINER_BUILD_GUIDE.md">Container Setup Guide</a>
+</div>
+
+</div>
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>
